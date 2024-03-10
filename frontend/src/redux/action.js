@@ -13,7 +13,7 @@ import {
   STUDENTCOURSE,
   SignUpData,
 } from "./actionType";
-const url = "http://localhost:9090";
+const url = "https://backend-idea-0bbp.onrender.com/";
 
 export const signupPost = (el) => async (dispatch) => {
   const res = await axios.post(`${url}/signup`, el);
