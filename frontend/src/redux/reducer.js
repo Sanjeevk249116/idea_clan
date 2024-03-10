@@ -1,10 +1,12 @@
-import { GETCOURSE, GETSCHEDULE, STUDENTCOURSE, SignUpData, logInData } from "./actionType";
+import { ASSIGNMENTGET, GETCOURSE, GETSCHEDULE, GETSPRINT, STUDENTCOURSE, SignUpData, logInData } from "./actionType";
 
 const listStates = {
   signupData: [],
   getCourseData: [],
   studentCourseData: [],
   schedule:[],
+  sprint:[],
+  assignment:[],
   status: 0,
 };
 
@@ -22,6 +24,10 @@ function reducer(state = listStates, { type, payload }) {
       return { ...state, studentCourseData: payload.msg };
     case GETSCHEDULE:
       return { ...state, schedule: payload.msg };
+    case GETSPRINT:
+      return { ...state, sprint: payload.msg };
+    case ASSIGNMENTGET:
+      return { ...state, assignment: payload.msg };
 
     default:
       return state;

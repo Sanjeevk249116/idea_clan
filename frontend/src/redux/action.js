@@ -1,7 +1,9 @@
 import axios from "axios";
 import {
+  ASSIGNMENTGET,
   GETCOURSE,
   GETSCHEDULE,
+  GETSPRINT,
   GETSTUDENTCOURSE,
   STUDENTCOURSE,
   SignUpData,
@@ -41,4 +43,14 @@ export const GetscheduleData = () => async (dispatch) => {
   const res = await axios.get(`${url}/getschedule`);
 
   dispatch({ type: GETSCHEDULE, payload: res.data });
+};
+export const getSprintData = () => async (dispatch) => {
+  const res = await axios.get(`${url}/getsprint`);
+
+  dispatch({ type: GETSPRINT, payload: res.data });
+};
+export const getassignmentData = () => async (dispatch) => {
+  const res = await axios.get(`${url}/getassignment`);
+
+  dispatch({ type: ASSIGNMENTGET, payload: res.data });
 };

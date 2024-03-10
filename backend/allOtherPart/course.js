@@ -1,4 +1,6 @@
 const ScheduleModel = require("../models/Schedule");
+const Week = require("../models/SprintPlane");
+const AssignmentModel = require("../models/assignment");
 const { CourseModel } = require("../models/courseModel");
 const { StudentModel } = require("../models/studentmodel");
 
@@ -27,9 +29,30 @@ exports.scheduleLecture = async (req, res) => {
   data.save();
   res.send({ msg: data });
 };
+exports.assignmentgiven = async (req, res) => {
+  const data = await AssignmentModel(req.body);
+  data.save();
+  res.send({ msg: data });
+};
+exports.sprintplane = async (req, res) => {
+  const data = await Week(req.body);
+  data.save();
+  res.send({ msg: data });
+};
 
 exports.getscheduleLecture = async (req, res) => {
   const data = await ScheduleModel.find();
+
+  res.send({ msg: data });
+};
+exports.getassignmentgiven = async (req, res) => {
+  const data = await AssignmentModel.find();
+
+  res.send({ msg: data });
+};
+
+exports.getsprintplane = async (req, res) => {
+  const data = await Week.find();
 
   res.send({ msg: data });
 };

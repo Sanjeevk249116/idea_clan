@@ -12,13 +12,13 @@ app.use(
   })
 );
 
-app.use("",Router);
+app.use("", Router);
 
-app.listen(process.env.PORT,async()=>{
-try{
+app.listen(process.env.PORT, async () => {
+  try {
     await connection;
-    console.log(`server connection with ${process.env.PORT}`)
-}catch(err){
-    console.log("not connected")
-}
-})
+    console.log(`server connection with ${process.env.PORT}`);
+  } catch (err) {
+    console.log("not connected");
+  }
+});

@@ -25,7 +25,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 function SignUpForm() {
-  const {setAuthentication}=useContext(AuthContextData)
+  const {checkout,setcheckout}=useContext(AuthContextData)
   const toast = useToast();
   const dispatch = useDispatch();
   const navigate=useNavigate();
@@ -35,6 +35,7 @@ function SignUpForm() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    
     if (resData.status >= 400 && resData.status<500) {
       toast({
         title: "Email already register",
@@ -42,14 +43,14 @@ function SignUpForm() {
         duration: 3000,
         isClosable: true,
       });
-    } else if (resData.status === 200) {
+    } else if (resData.status === 200&&checkout) {
       toast({
         title: "Resistration successfull",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      setAuthentication(resData.signupData)
+     
       navigate("/home")
     }
  
@@ -73,6 +74,7 @@ function SignUpForm() {
         onSubmit={(values) => {
           // same shape as initial values
           setLoading(true);
+          setcheckout(true)
           // SetSignup({...signup,email:values.email,name:values.Name,password:values.password})
           dispatch(
             signupPost({

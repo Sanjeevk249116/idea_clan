@@ -26,7 +26,7 @@ const SignupSchema = Yup.object().shape({
 
 function SigninForm() {
   const toast = useToast();
-  const {setAuthentication}=useContext(AuthContextData)
+  const{checkout,setcheckout}=useContext(AuthContextData)
   const dispatch = useDispatch();
   const navigate=useNavigate();
   const resData = useSelector((pre) => pre.reducer);
@@ -42,14 +42,14 @@ function SigninForm() {
         duration: 3000,
         isClosable: true,
       });
-    } else if (resData.status === 200) {
+    } else if (resData.status === 200 && checkout) {
       toast({
         title: "Login successfull",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      setAuthentication(resData.signupData)
+     
       navigate("/home")
     }
      else if(resData.status >= 600 && resData.status<700)  {
@@ -62,7 +62,7 @@ function SigninForm() {
       
     }
  
-  }, [resData.status]);
+  }, [resData.status,checkout]);
   return (
     <div className="signup-container">
       <div className="flex flex-center flex-col">
@@ -81,6 +81,7 @@ function SigninForm() {
         onSubmit={(values) => {
           // same shape as initial values
           setLoading(true);
+          setcheckout(true)
           // SetSignup({...signup,email:values.email,name:values.Name,password:values.password})
           dispatch(
             loginData({

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DashBoard from "../container/DashBoard";
 import Assignmemt from "../container/Assignmemt";
 import Lecture from "../container/Lecture";
@@ -6,22 +6,40 @@ import Profile from "../container/Profile";
 import Notification from "../container/Notification";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getassignmentData } from "../redux/action";
+import { AuthContextData } from "../authProvider/AuthContainer";
 
 function MainPage() {
-    const navigate=useNavigate();
+  const {setcheckout}=useContext(AuthContextData)
+  const dispatch = useDispatch();
+  const [obj, setObj] = useState({});
+  const data = useSelector((pre) => pre.reducer);
+  useEffect(() => {
+    dispatch(getassignmentData());
+  }, []);
+  useEffect(() => {
+    setObj(data.signupData);
+  }, [data]);
+  
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const toast = useToast();
-  const handleChange=(no)=>{
-    setPage(no)
-  }
+  const handleChange = (no) => {
+    setPage(no);
+  };
   const handleAccount = () => {
-    console.log("hello")
+    console.log("hello");
     toast({
       status: "info",
       title: "Feature Coming out soon",
       duration: 3000,
     });
   };
+  const handleLogout=()=>{
+  setcheckout(false)
+    navigate("/")
+  }
   return (
     <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
       <div className="fixed w-full flex items-center justify-between h-14 text-white z-10 bg-blue-800">
@@ -32,7 +50,7 @@ function MainPage() {
             src="https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar.jpg"
             alt="User Avatar"
           />
-          <span className="hidden md:block">ADMIN</span>
+          <span className="hidden md:block">{obj.name}</span>
         </div>
 
         {/* Search */}
@@ -65,7 +83,11 @@ function MainPage() {
             </li>
             {/* Logout */}
             <li>
-              <div className="flex items-center mr-4 hover:text-blue-100" onClick={()=>navigate("/")}>
+              <div
+                className="flex items-center mr-4 hover:text-blue-100 cursor-pointer"
+                onClick={() => handleLogout()}
+                
+              >
                 <span className="inline-flex mr-1">
                   <svg
                     className="w-5 h-5"
@@ -99,7 +121,10 @@ function MainPage() {
               </div>
             </li>
             <li>
-              <div className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6" onClick={(e)=>handleChange(1)}>
+              <div
+                className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+                onClick={(e) => handleChange(1)}
+              >
                 <span className="inline-flex justify-center items-center ml-4">
                   <svg
                     className="w-5 h-5"
@@ -116,13 +141,16 @@ function MainPage() {
                     ></path>
                   </svg>
                 </span>
-                <span className="ml-2 text-sm tracking-wide truncate" >
+                <span className="ml-2 text-sm tracking-wide truncate">
                   Dashboard
                 </span>
               </div>
             </li>
             <li>
-              <div className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6" onClick={(e)=>handleChange(2)}>
+              <div
+                className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+                onClick={(e) => handleChange(2)}
+              >
                 <span className="inline-flex justify-center items-center ml-4">
                   <svg
                     className="w-5 h-5"
@@ -139,7 +167,7 @@ function MainPage() {
                     ></path>
                   </svg>
                 </span>
-                <span className="ml-2 text-sm tracking-wide truncate" >
+                <span className="ml-2 text-sm tracking-wide truncate">
                   Assigment
                 </span>
                 <span className="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-blue-500 bg-indigo-50 rounded-full">
@@ -148,7 +176,10 @@ function MainPage() {
               </div>
             </li>
             <li>
-              <div className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6" onClick={(e)=>handleChange(3)}>
+              <div
+                className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+                onClick={(e) => handleChange(3)}
+              >
                 <span className="inline-flex justify-center items-center ml-4">
                   <svg
                     className="w-5 h-5"
@@ -171,7 +202,10 @@ function MainPage() {
               </div>
             </li>
             <li>
-              <div className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"onClick={(e)=>handleChange(4)}>
+              <div
+                className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+                onClick={(e) => handleChange(4)}
+              >
                 <span className="inline-flex justify-center items-center ml-4">
                   <svg
                     className="w-5 h-5"
@@ -196,15 +230,18 @@ function MainPage() {
                 </span>
               </div>
             </li>
-            <li className="px-5 hidden md:block" >
+            <li className="px-5 hidden md:block">
               <div className="flex flex-row items-center mt-5 h-8">
-                <div className="text-sm font-light tracking-wide text-gray-400 uppercase" >
+                <div className="text-sm font-light tracking-wide text-gray-400 uppercase">
                   Settings
                 </div>
               </div>
             </li>
             <li>
-              <div className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6" onClick={()=>handleChange(5)}>
+              <div
+                className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+                onClick={() => handleChange(5)}
+              >
                 <span className="inline-flex justify-center items-center ml-4">
                   <svg
                     className="w-5 h-5"
@@ -227,7 +264,10 @@ function MainPage() {
               </div>
             </li>
             <li>
-              <div className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6" onClick={handleAccount}>
+              <div
+                className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+                onClick={handleAccount}
+              >
                 <span className="inline-flex justify-center items-center ml-4">
                   <svg
                     className="w-5 h-5"
@@ -250,7 +290,7 @@ function MainPage() {
                     ></path>
                   </svg>
                 </span>
-                <span className="ml-2 text-sm tracking-wide truncate" >
+                <span className="ml-2 text-sm tracking-wide truncate">
                   Settings
                 </span>
               </div>
@@ -263,11 +303,11 @@ function MainPage() {
       </div>
       <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
         <div class=" p-4 ">
-          {page===1&&<DashBoard />}
-          {page===2&&<Assignmemt />}
-          {page===3&&<Lecture />}
-          {page===4&&<Notification />}
-          {page===5&&<Profile/>}
+          {page === 1 && <DashBoard />}
+          {page === 2 && <Assignmemt />}
+          {page === 3 && <Lecture />}
+          {page === 4 && <Notification />}
+          {page === 5 && <Profile />}
         </div>
       </div>
     </div>
