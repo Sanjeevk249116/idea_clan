@@ -133,7 +133,7 @@ function SigninForm() {
               ) : null}
             </div>
             
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn bg-red-500">
               {loading ? (
                 <CircularProgress isIndeterminate size="35px" color="red.500" />
               ) : (
@@ -147,7 +147,7 @@ function SigninForm() {
         <p>
           Create a new Acoount ?{" "}
           <Link to={"/"}>
-            <span className="text-blue-400 underline ">Signup</span>
+            <span className="text-blue-700 underline ">Signup</span>
           </Link>{" "}
         </p>
       </div>
