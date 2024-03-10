@@ -31,7 +31,7 @@ dispatch(getSprintData())
           <Grid templateColumns="repeat(10, 1fr)" alignItems="center" my={5}>
             <GridItem colSpan={2}>
               <Text color={'greenyellow'} fontSize={18} fontWeight={600}>
-            Weel: {el.week}
+            Week: {el.week}
               </Text>
             </GridItem>
             <GridItem colSpan={8}>

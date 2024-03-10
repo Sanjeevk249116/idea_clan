@@ -8,16 +8,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getassignmentData } from '../redux/action';
 
 function Homes() {
-    const{authentication}=useContext(AuthContextData);
-    console.log(authentication)
+    const{authentication,obj, setObj}=useContext(AuthContextData);
     const dispatch=useDispatch();
-    const [obj, setObj] = useState({});
+  
     const data = useSelector((pre) => pre.reducer);
     useEffect(() => {
       dispatch(getassignmentData());
     }, []);
     useEffect(()=>{
-    setObj(data.signupData)
+    setObj(data.signupData.role)
     },[data])
     console.log(data)
   return (
@@ -25,8 +24,8 @@ function Homes() {
         {/* <Box bg={"#04090c"}>
         <NavBar />
       </Box> */}
-    {obj?.role === 'admin' && <AdminDashboard />}
-    {obj?.role === 'user' && <StudentDashboard />}
+    {obj === 'admin' && <AdminDashboard />}
+    {obj=== 'user' && <StudentDashboard />}
     {/* <StudentDashboard authentication={authentication}/> */}
 </div>
   )

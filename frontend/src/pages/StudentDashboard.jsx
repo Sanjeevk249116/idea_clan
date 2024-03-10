@@ -13,7 +13,7 @@ function StudentDashboard() {
   const data = useSelector((pre) => pre.reducer);
   const data2 = useSelector((pre) => pre.reducer2);
   console.log(data);
-  const [submitted, setSubmitted] = useState({});
+ 
   useEffect(() => {
     dispatch(courseData());
   }, []);

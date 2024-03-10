@@ -14,17 +14,24 @@ import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 import { studentData } from "../../redux/action";
+import { useContext } from "react";
+import { AuthContextData } from "../../authProvider/AuthContainer";
 
 export const ProductCard = (props) => {
+  const{obj,setTitles}=useContext(AuthContextData)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { product, rootProps, email } = props;
+  const { product, rootProps, email,setCheck } = props;
 
   const { title, duration, level, description } = product;
   const handleVisual = (name) => {
     product.email = email;
     dispatch(studentData(product)).then(() => navigate(`/main`));
   };
+
+  const handleDelete=(name)=>{
+   setCheck(name)
+  }
   return (
     <Stack
       maxW={"450px"}
@@ -59,13 +66,22 @@ export const ProductCard = (props) => {
         </Stack>
       </Stack>
       <Stack align="center">
-        <Button
+       {obj=='admin'?<>
+       <Button
+          colorScheme="blue"
+          width="full"
+          onClick={(e) => handleDelete(title)}
+        >
+          Delete Course
+        </Button></>:<>
+       <Button
           colorScheme="blue"
           width="full"
           onClick={(e) => handleVisual(title)}
         >
           Conform Course
         </Button>
+       </>}
       </Stack>
     </Stack>
   );
