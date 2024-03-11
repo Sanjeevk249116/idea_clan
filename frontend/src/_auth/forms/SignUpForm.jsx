@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import "./signUpForm.css";
 import { useContext, useEffect, useState } from "react";
-import { CircularProgress, useToast } from "@chakra-ui/react";
+import { Button, CircularProgress, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { signupPost } from "../../redux/action";
 import { AuthContextData } from "../../authProvider/AuthContainer";
@@ -137,13 +137,13 @@ function SignUpForm() {
                 <div className="error">{errors.conform_password}</div>
               ) : null}
             </div>
-            <button type="submit" className="btn btn-primary">
+            <Button  type="submit" bg={'red'}>
               {loading ? (
                 <CircularProgress isIndeterminate size="35px" color="red.500" />
               ) : (
                 <> Submit</>
               )}
-            </button>
+            </Button>
           </Form>
         )}
       </Formik>

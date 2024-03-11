@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import "./signUpForm.css";
 import { useContext, useEffect, useState } from "react";
-import { CircularProgress, useToast } from "@chakra-ui/react";
+import { Button, CircularProgress, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginData, signupPost } from "../../redux/action";
 import { AuthContextData } from "../../authProvider/AuthContainer";
@@ -133,13 +133,13 @@ function SigninForm() {
               ) : null}
             </div>
             
-            <button type="submit" className="btn">
+            <Button bg={"red"} type="submit" className="btn">
               {loading ? (
                 <CircularProgress isIndeterminate size="35px" color="red.500" />
               ) : (
                 <> Submit</>
               )}
-            </button>
+            </Button>
           </Form>
         )}
       </Formik>
@@ -147,7 +147,7 @@ function SigninForm() {
         <p>
           Create a new Acoount ?{" "}
           <Link to={"/"}>
-            <span className="text-blue-700 underline ">Signup</span>
+            <span className="text-blue-900 underline ">Signup</span>
           </Link>{" "}
         </p>
       </div>
