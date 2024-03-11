@@ -27,6 +27,11 @@ Signup Schema: Admins must adhere to a specific signup schema.
     password: { type: String, required: true },
     role: { type: String, default: "admin" },
 
+    or use this detail for signin(admin) 
+    name:"sanjeev",
+    email:"sanjeev249116@gmail.com",
+    password:"123",
+
 ## Signup Endpoint: Admins should sign up using the following endpoint:
 
 Endpoint: https://backend-idea-0bbp.onrender.com/signup
