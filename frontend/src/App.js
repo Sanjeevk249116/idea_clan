@@ -4,7 +4,7 @@ import NavBar from "./navbar/NavBar";
 import MainRouter from "./routers/MainRouter";
 function App() {
   return (
-    <div className=" h-full bg-blue-300 maincss">
+    <div className=" h-full  maincss">
     
       <MainRouter />
     </div>

@@ -37,8 +37,10 @@ function Assignment() {
     setArray(data.assignment);
   }, [data]);
   const handleAccount = (idx) => {
+    console.log(idx)
     setClickedIndex(idx);
     setIsSubmitted(false);
+    console.log(clickedIndex)
   };
 
   const handleSumit = () => {
@@ -148,7 +150,7 @@ function Assignment() {
                 templateColumns="repeat(10, 1fr)"
                 alignItems={"center"}
                 my={5}
-                onClick={handleAccount}
+                
               >
                 <GridItem colSpan={4} onClick={(e) => handleAccount(index)}>
                   <Text fontSize={18} fontWeight={600}>
@@ -174,7 +176,7 @@ function Assignment() {
                 </Flex>
               </GridItem>
                 {!isSubmitted && clickedIndex === index && (
-                  <GridItem colSpan={9} my={10}>
+                  <GridItem colSpan={10} my={10}>
                     <input
                       type="text"
                       placeholder="Submit the github link"
