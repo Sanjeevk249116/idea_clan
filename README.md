@@ -52,26 +52,6 @@ reacthub/
 ├─ redux
 ├─ routers
 
-## design decisions or assumptions
-
- <h3>Screenshots</h3>
-
- <h4>laptop</h4>
-
-<img src='https://i.ibb.co/F8KPB0N/laptop.png' alt='img' />
-
-<h4>Tablet</h4>
-
-<img src='https://i.ibb.co/Hqx3R6k/Tablet.png' alt='img' />
-
-<h4>Mobile</h4>
-
-<img src='https://i.ibb.co/NxbXZfg/mobile.png' alt='img' />
-
-<h4>Navbar</h4>
-
-<img src='https://i.ibb.co/y8mn44R/navbar.png' alt='img' />
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
