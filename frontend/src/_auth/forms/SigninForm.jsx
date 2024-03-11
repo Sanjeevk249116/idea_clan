@@ -133,7 +133,7 @@ function SigninForm() {
               ) : null}
             </div>
             
-            <button type="submit" className="btn bg-red-500">
+            <button type="submit" className="btn">
               {loading ? (
                 <CircularProgress isIndeterminate size="35px" color="red.500" />
               ) : (
